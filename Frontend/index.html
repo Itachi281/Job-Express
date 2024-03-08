@@ -1,76 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Job-Express.com</title>
     <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url(images/Job.jpg);
+        background-size: cover;
+        background-position: center;
+        position: relative;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+      }
+      .signup-login {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+      }
+      .feature-container {
+        margin-top: 80px;
+      }
+      footer {
+        margin-top: 200px;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+      }
+      .button-group {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+      }
+      .button-group input[type="submit"],
+      .button-group button {
+        margin: 0 5px;
+      }
+      .popup-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+      }
+
+      .close {
+        color: #aaa;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+      }
+      .close {
+        position: relative;
+        top: -10px;
+        right: -10px;
+      }
+      @media only screen and (max-width: 640px) {
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-image: url(images/Job.jpg);
-            background-size: cover;
-            background-position: center;
-            position: relative;
+          overflow-y: auto !important;
         }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            text-align: center;
-            position: relative;
+        .modal-dialog {
+          max-width: 95%;
         }
-        .signup-login {
-            position: absolute;
-            top: 20px;
-            right: 20px;
+        .popup-body {
+          padding-top: 30px;
         }
-        .feature-container {
-            margin-top: 80px;
+        .close {
+          top: -7px;
+          right: -7px;
         }
-        footer {
-            margin-top: 200px;
-        }
-        a {
-            color: inherit; 
-            text-decoration: none;
-}
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1>Welcome to Job-Express</h1>
-        <h4>First step in the Professional Journey</h3>
-        <div class="feature-container">
-            <h2>Why Choose Job-Express.com?</h2>
-            <p>Curated Listings: We handpick job opportunities to ensure quality.</p>
-            <p>User-Friendly Interface: Our platform is designed for easy navigation and job searching.</p>
-            <!-- <p>Instant Notifications: Receive updates on new job postings matching your preferences.</p> -->
-        </div>
-        <h2>Featured Companies</h2>
-        <!-- Logo Carousel of Featured Companies -->
-        <div class="testimonials-container">
-            <h2>Testimonials</h2>
-            
-        </div>
-        <div class="signup-login">
-            <a href="#anyques">Any Questions?</a>
-            <a href="#signup">Sign Up</a>
-            <a href="#login">Login</a>
-        </div>
-        <div class="social-media">
-            <!-- Social Media Icons -->
-        </div>
-        <footer>
-            <!-- <ul>
+      <h1>Welcome to Job-Express</h1>
+      <h4>First step in the Professional Journey</h4>
+      <div class="feature-container">
+        <h2>Why Choose Job-Express.com?</h2>
+        <p>
+          Curated Listings: We handpick job opportunities to ensure quality.
+        </p>
+        <p>
+          User-Friendly Interface: Our platform is designed for easy navigation
+          and job searching.
+        </p>
+        <!-- <p>Instant Notifications: Receive updates on new job postings matching your preferences.</p> -->
+      </div>
+      <h2>Featured Companies</h2>
+      <!-- Logo Carousel of Featured Companies -->
+      <div class="testimonials-container">
+        <h2>Testimonials</h2>
+      </div>
+      <div class="signup-login">
+        <a href="contact.html">Any Ques?</a>
+        <a href="#signin" onclick="openSignInForm()">SignIn</a>
+        <a href="#register" onclick="openRegisterForm()">Register</a>
+      </div>
+      <div class="social-media">
+        <!-- Social Media Icons -->
+      </div>
+      <footer>
+        <!-- <ul>
                 <li>About Us</li>
                 <li>Contact Us</li>
                 <li>Privacy Policy</li>
                 <li>Terms of Service</li>
             </ul> -->
-            <p>&copy; 2024 Job-Express.com. All Rights Reserved.</p>
-        </footer>
+        <p>&copy; 2024 Job-Express.com. All Rights Reserved.</p>
+      </footer>
     </div>
-</body>
+
+    <div id="signInPopup" class="popup">
+      <div class="popup-header">
+        <h2>Sign In</h2>
+        <span class="close" onclick="closeSignInForm()">&times;</span>
+      </div>
+      <!-- Sign In Form -->
+      <form>
+        <label for="username">Username:</label><br />
+        <input type="text" id="username" name="username" /><br />
+        <label for="password">Password:</label><br />
+        <input type="password" id="password" name="password" /><br /><br />
+        <input type="checkbox" id="rememberMe" name="rememberMe" />
+        <label for="rememberMe">Remember Me</label><br /><br />
+        <div class="button-group">
+          <input type="submit" value="Submit" />
+          <button onclick="closeSignInForm()">Close</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Register Popup -->
+    <div id="registerPopup" class="popup">
+      <h2>Register</h2>
+      <!-- Register Form -->
+      <form>
+        <label for="emailId">Email Id:</label><br />
+        <input type="text" id="emailId" name="emailId" /><br />
+        <label for="password">Password:</label><br />
+        <input type="password" id="password" name="password" /><br />
+        <label for="confirmPassword">Confirm Password:</label><br />
+        <input type="password" id="confirmPassword" name="confirmPassword" /><br /><br />
+        <input type="submit" value="Register" />
+        <button onclick="closeRegisterForm()">Close</button>
+      </form>
+    </div>
+
+    <script>
+      function openSignInForm() {
+        document.getElementById("signInPopup").style.display = "block";
+      }
+
+      function closeSignInForm() {
+        document.getElementById("signInPopup").style.display = "none";
+      }
+
+      function openRegisterForm() {
+        document.getElementById("registerPopup").style.display = "block";
+      }
+
+      function closeRegisterForm() {
+        document.getElementById("registerPopup").style.display = "none";
+      }
+    </script>
+  </body>
 </html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <title>Contact Us Form in Html Css</title>
+    <link rel="stylesheet" href="style/style.css" />
+  </head>
+  <body>
+    <div class="contact-form">
+      <h1>Any Ques?</h1>
+      <div class="container">
+        <div class="main">
+          <div class="content">
+            <h2>Contact Us</h2>
+            <form action="#" method="post">
+              <input type="text" name="name" placeholder="Enter Your Name" />
+
+              <input type="email" name="name" placeholder="Enter Your Email" />
+              <input type="tel" name="phone" placeholder="Enter Your Contact Number" />
+              <textarea
+                name="message"
+                id="message"
+                placeholder="Enter Your Message within 100 words"
+              ></textarea>
+              <script>
+                // Get the textarea element
+                var messageTextarea = document.getElementById("message");
+
+                // Add event listener for input event (when user types)
+                messageTextarea.addEventListener("input", function () {
+                  // Split the text by spaces to count words
+                  var words = this.value.trim().split(/\s+/);
+                  // Get the current word count
+                  var wordCount = words.length;
+
+                  // Check if word count exceeds the limit (100 words)
+                  if (wordCount > 10) {
+                    // Trim the text to 100 words
+                    this.value = words.slice(0, 10).join(" ");
+                  }
+                });
+              </script>
+              <button type="submit" class="btn">
+                Send <i class="fas fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+          <div class="form-img">
+            <img src="images/bg1.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
